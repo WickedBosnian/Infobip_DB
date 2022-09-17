@@ -563,6 +563,342 @@
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateClient]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+INSERT INTO Client
+(Firstname, Lastname, Birthdate, Gender, DriverLicenceNumber, PersonalIDCardNumber)
+VALUES
+(
+@Firstname, @Lastname, @Birthdate, @Gender, @DriverLicenceNumber, @PersonalIDCardNumber
+)
+
+SELECT *
+FROM Client
+WHERE ClientID = (SELECT SCOPE_IDENTITY())]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateClient].[@PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@Firstname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@Lastname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@DriverLicenceNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@PersonalIDCardNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@Birthdate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateClient].[@Gender]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="475" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CreateClient]&#xD;&#xA;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate datetime, @Gender char&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAllClients]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+SELECT *
+FROM Client]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="65" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetAllClients]&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAllReservations]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+SELECT *
+FROM Reservation]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="67" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE GetAllReservations&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetClientById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+SELECT *
+FROM Client
+WHERE ClientID = @ClientId]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientById].[@ClientId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientById].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="107" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetClientById] @ClientId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[InsertClient]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	INSERT INTO [dbo].[Client]
+           ([Firstname]
+           ,[Lastname]
+		   ,[Birthdate]
+           ,[DriverLicenceNumber]
+		   )
+     VALUES
+           (@Firstname
+		   ,'test'
+		   ,'2000-01-01'
+		   ,'TESTT'
+		   )
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[InsertClient].[@Firstname]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[InsertClient].[@Firstname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="194" />
+				<Property Name="Length" Value="559" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE InsertClient &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@Firstname nvarchar(200)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Reservation]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -766,6 +1102,193 @@
 			<AttachedAnnotation Disambiguator="14" />
 			<AttachedAnnotation Disambiguator="9" />
 			<AttachedAnnotation Disambiguator="10" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[UpdateClient]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+UPDATE Client SET Firstname = ISNULL(@Firstname, Firstname)
+	, Lastname = ISNULL(@Lastname, Lastname)
+	, Birthdate = ISNULL(@Birthdate, Birthdate)
+	, Gender = ISNULL(@Gender, Gender)
+	, DriverLicenceNumber = ISNULL(@DriverLicenceNumber, DriverLicenceNumber)
+	, PersonalIDCardNumber = ISNULL(@PersonalIDCardNumber, PersonalIDCardNumber)
+	, ModifiedDate = GETDATE()
+WHERE ClientID = @ClientId]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ModifiedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@ClientId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@Firstname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@Lastname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@DriverLicenceNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@PersonalIDCardNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@Birthdate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateClient].[@Gender]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="624" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[UpdateClient]&#xD;&#xA;@ClientId int&#xD;&#xA;, @Firstname nvarchar(200)&#xD;&#xA;, @Lastname nvarchar(200)&#xD;&#xA;, @DriverLicenceNumber nvarchar(20)&#xD;&#xA;, @PersonalIDCardNumber nvarchar(20)&#xD;&#xA;, @Birthdate datetime&#xD;&#xA;, @Gender char&#xD;&#xA;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Vehicle]">
 			<Property Name="IsAnsiNullsOn" Value="True" />

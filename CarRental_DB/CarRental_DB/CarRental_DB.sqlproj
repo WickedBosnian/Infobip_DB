@@ -70,5 +70,10 @@
     <Build Include="dbo\Tables\Reservation.sql" />
     <Build Include="dbo\Tables\ReservedVehicle.sql" />
     <Build Include="dbo\Stored Procedures\InsertClient.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateClient.sql" />
+    <Build Include="dbo\Stored Procedures\GetClientById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllReservations.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllClients.sql" />
+    <Build Include="dbo\Stored Procedures\CreateClient.sql" />
   </ItemGroup>
 </Project>
