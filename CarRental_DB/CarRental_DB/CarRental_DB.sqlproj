@@ -61,6 +61,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Functions\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Client.sql" />
@@ -68,12 +69,19 @@
     <Build Include="dbo\Tables\VehicleManufacturer.sql" />
     <Build Include="dbo\Tables\Vehicle.sql" />
     <Build Include="dbo\Tables\Reservation.sql" />
-    <Build Include="dbo\Tables\ReservedVehicle.sql" />
-    <Build Include="dbo\Stored Procedures\InsertClient.sql" />
     <Build Include="dbo\Stored Procedures\UpdateClient.sql" />
     <Build Include="dbo\Stored Procedures\GetClientById.sql" />
     <Build Include="dbo\Stored Procedures\GetAllReservations.sql" />
     <Build Include="dbo\Stored Procedures\GetAllClients.sql" />
     <Build Include="dbo\Stored Procedures\CreateClient.sql" />
+    <Build Include="dbo\Functions\IsVehicleReservedForPeriod.sql" />
+    <Build Include="dbo\Functions\GetNumberOfReservationsWithSameVehicleTypeForClient.sql" />
+    <Build Include="dbo\Functions\GetNumberOfActiveReservationsForClient.sql" />
+    <Build Include="dbo\Stored Procedures\SearchReservations.sql" />
+    <Build Include="dbo\Stored Procedures\GetReservationById.sql" />
+    <Build Include="dbo\Stored Procedures\GetClientsByFilters.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteClient.sql" />
+    <Build Include="dbo\Stored Procedures\CreateReservation.sql" />
+    <Build Include="dbo\Stored Procedures\CancelReservation.sql" />
   </ItemGroup>
 </Project>

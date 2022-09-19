@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Vehicle] (
     [VehicleID]             INT             IDENTITY (1, 1) NOT NULL,
+    [VehicleName]           NVARCHAR (200)  NOT NULL,
     [VehicleManufacturerID] INT             NOT NULL,
     [VehicleTypeID]         INT             NOT NULL,
     [Color]                 NVARCHAR (20)   NULL,
@@ -11,4 +12,6 @@
     FOREIGN KEY ([VehicleManufacturerID]) REFERENCES [dbo].[VehicleManufacturer] ([VehicleManufacturerID]),
     FOREIGN KEY ([VehicleTypeID]) REFERENCES [dbo].[VehicleType] ([VehicleTypeID])
 );
+
+
 

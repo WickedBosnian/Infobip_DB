@@ -2,7 +2,7 @@
     [ClientID]             INT            IDENTITY (1, 1) NOT NULL,
     [Firstname]            NVARCHAR (200) NOT NULL,
     [Lastname]             NVARCHAR (200) NOT NULL,
-    [Birthdate]            DATETIME       NULL,
+    [Birthdate]            DATE           NULL,
     [Gender]               CHAR (1)       NULL,
     [DriverLicenceNumber]  NVARCHAR (20)  NOT NULL,
     [PersonalIDCardNumber] NVARCHAR (20)  NULL,
@@ -10,6 +10,8 @@
     [ModifiedDate]         DATETIME       NULL,
     PRIMARY KEY CLUSTERED ([ClientID] ASC)
 );
+
+
 
 
 GO
