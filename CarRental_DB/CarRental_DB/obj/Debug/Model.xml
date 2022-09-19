@@ -777,6 +777,15 @@ BEGIN TRY
 		IF dbo.GetNumberOfReservationsWithSameVehicleTypeForClient(@ClientId, @VehicleId, @ReservationDateFrom, @ReservationDateTo) >= 1
 			RAISERROR('Two vehicles of the same type can not be reserved at the same time by the same client!', 11, 1);
 
+		IF CAST(@ReservationDateFrom AS date) < CAST(@ReservationDateTo AS date)
+			RAISERROR('Ending date of reservation can not be before Starting date of reservation!', 11, 1);
+
+		IF dbo.DoesClientExist(@ClientId) = 0
+			RAISERROR('Client with this ID does not exist!', 11, 1);
+
+		IF dbo.DoesVehicleExist(@VehicleId) = 0
+			RAISERROR('Vehicle with this ID does not exist!', 11, 1);
+
 		INSERT INTO [dbo].[Reservation]
 			   ([ClientID]
 			   ,[VehicleID]
@@ -822,6 +831,18 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[date]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesClientExist]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesVehicleExist]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Reservation]" />
@@ -914,7 +935,7 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="190" />
-				<Property Name="Length" Value="1408" />
+				<Property Name="Length" Value="1797" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Creates a reservation&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateReservation]&#xD;&#xA; @ClientId int, @VehicleId int, @ReservationDateFrom datetime, @ReservationDateTo datetime&#xD;&#xA;AS" />
@@ -926,6 +947,12 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 	SET NOCOUNT ON
 	BEGIN TRY
 		BEGIN TRAN
+			IF dbo.DoesManufacturerExist(@VehicleManufacturerId) = 0
+				RAISERROR('Vehicle Manufacturer with this ID does not exist!', 11, 1);
+
+			IF dbo.DoesVehicleTypeExist(@VehicleTypeId) = 0
+				RAISERROR('Vehicle type with this ID does not exist!', 11, 1);
+
 			INSERT INTO Vehicle
 				(VehicleName, VehicleManufacturerID, VehicleTypeID, Color, DateManufactured, PricePerDay)
 			VALUES
@@ -943,6 +970,18 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[DoesManufacturerExist]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesVehicleTypeExist]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@VehicleTypeId]" />
+				</Entry>
 				<Entry>
 					<References Name="[dbo].[Vehicle]" />
 				</Entry>
@@ -966,12 +1005,6 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[CreateVehicle].[@VehicleName]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[CreateVehicle].[@VehicleManufacturerId]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[CreateVehicle].[@VehicleTypeId]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[CreateVehicle].[@Color]" />
@@ -1089,10 +1122,10 @@ SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="202" />
-				<Property Name="Length" Value="820" />
+				<Property Name="Length" Value="1089" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Inserts a record in Vehicle table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE CreateVehicle&#xD;&#xA;@VehicleName nvarchar(200)&#xD;&#xA;&#x9;, @VehicleManufacturerId int&#xD;&#xA;&#x9;, @VehicleTypeId int&#xD;&#xA;&#x9;, @Color nvarchar(20)&#xD;&#xA;&#x9;, @DateManufactured date&#xD;&#xA;&#x9;, @PricePerDay decimal(19,4)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Inserts a record in Vehicle table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateVehicle]&#xD;&#xA;@VehicleName nvarchar(200)&#xD;&#xA;&#x9;, @VehicleManufacturerId int&#xD;&#xA;&#x9;, @VehicleTypeId int&#xD;&#xA;&#x9;, @Color nvarchar(20)&#xD;&#xA;&#x9;, @DateManufactured date&#xD;&#xA;&#x9;, @PricePerDay decimal(19,4)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateVehicleManufacturer]">
@@ -1552,6 +1585,306 @@ END]]></Value>
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Deletes vehicle type based on ID&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE DeleteVehicleType &#xD;&#xA;&#x9;@VehicleTypeId int&#xD;&#xA;AS" />
 			</Annotation>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[DoesClientExist]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesClientExist].[@ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @ClientExists bit = 0
+
+	IF(SELECT COUNT(*) FROM Client WHERE ClientID = @ClientID) >= 1
+		SET @ClientExists = 1
+
+	RETURN @ClientExists
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="221" />
+							<Property Name="Length" Value="455" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns true or false depending if the client exists&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION DoesClientExist&#xD;&#xA;(&#xD;&#xA;&#x9;@ClientID int&#xD;&#xA;)&#xD;&#xA;RETURNS bit&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DoesClientExist].[@ClientID]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[bit]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[DoesManufacturerExist]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesManufacturerExist].[@ManufacturerId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @MnufacturerExists bit = 0
+
+	IF(SELECT COUNT(*) FROM VehicleManufacturer WHERE VehicleManufacturerID = @ManufacturerId) >= 1
+		SET @MnufacturerExists = 1
+
+	RETURN @MnufacturerExists
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="235" />
+							<Property Name="Length" Value="528" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns true or false depending if the vehicle manufacturer exists&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION DoesManufacturerExist&#xD;&#xA;(&#xD;&#xA;&#x9;@ManufacturerId int&#xD;&#xA;)&#xD;&#xA;RETURNS bit&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DoesManufacturerExist].[@ManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[bit]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[DoesVehicleExist]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesVehicleExist].[@VehicleId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @VehicleExists bit = 0
+
+	IF(SELECT COUNT(*) FROM Vehicle WHERE VehicleID = @VehicleId) >= 1
+		SET @VehicleExists = 1
+
+	RETURN @VehicleExists
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="222" />
+							<Property Name="Length" Value="464" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns true or false depending if the vehicle exists&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION DoesVehicleExist&#xD;&#xA;(&#xD;&#xA;&#x9;@VehicleId int&#xD;&#xA;)&#xD;&#xA;RETURNS bit&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DoesVehicleExist].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[bit]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[DoesVehicleTypeExist]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DoesVehicleTypeExist].[@TypeId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @VehicleTypeExists bit = 0
+
+	IF(SELECT COUNT(*) FROM VehicleType WHERE VehicleTypeID = @TypeId) >= 1
+		SET @VehicleTypeExists = 1
+
+	RETURN @VehicleTypeExists
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="227" />
+							<Property Name="Length" Value="487" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns true or false depending if the vehicle type exists&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION DoesVehicleTypeExist&#xD;&#xA;(&#xD;&#xA;&#x9;@TypeId int&#xD;&#xA;)&#xD;&#xA;RETURNS bit&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DoesVehicleTypeExist].[@TypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[bit]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetAllClients]">
 			<Property Name="BodyScript">

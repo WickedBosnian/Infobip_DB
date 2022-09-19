@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Inserts a record in Vehicle table
 -- =============================================
-CREATE PROCEDURE CreateVehicle
+CREATE PROCEDURE [dbo].[CreateVehicle]
 @VehicleName nvarchar(200)
 	, @VehicleManufacturerId int
 	, @VehicleTypeId int
@@ -14,6 +14,12 @@ AS
 	SET NOCOUNT ON
 	BEGIN TRY
 		BEGIN TRAN
+			IF dbo.DoesManufacturerExist(@VehicleManufacturerId) = 0
+				RAISERROR('Vehicle Manufacturer with this ID does not exist!', 11, 1);
+
+			IF dbo.DoesVehicleTypeExist(@VehicleTypeId) = 0
+				RAISERROR('Vehicle type with this ID does not exist!', 11, 1);
+
 			INSERT INTO Vehicle
 				(VehicleName, VehicleManufacturerID, VehicleTypeID, Color, DateManufactured, PricePerDay)
 			VALUES
