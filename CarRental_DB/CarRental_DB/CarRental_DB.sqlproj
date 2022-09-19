@@ -83,5 +83,21 @@
     <Build Include="dbo\Stored Procedures\DeleteClient.sql" />
     <Build Include="dbo\Stored Procedures\CreateReservation.sql" />
     <Build Include="dbo\Stored Procedures\CancelReservation.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateVehicleType.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateVehicleManufacturer.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateVehicle.sql" />
+    <Build Include="dbo\Stored Procedures\SearchVehicles.sql" />
+    <Build Include="dbo\Stored Procedures\GetVehicleTypeById.sql" />
+    <Build Include="dbo\Stored Procedures\GetVehicleManufacturerById.sql" />
+    <Build Include="dbo\Stored Procedures\GetVehicleById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllVehicleTypes.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllVehicles.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllVehicleManufacturers.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteVehicleType.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteVehicleManufacturer.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteVehicle.sql" />
+    <Build Include="dbo\Stored Procedures\CreateVehicleType.sql" />
+    <Build Include="dbo\Stored Procedures\CreateVehicleManufacturer.sql" />
+    <Build Include="dbo\Stored Procedures\CreateVehicle.sql" />
   </ItemGroup>
 </Project>

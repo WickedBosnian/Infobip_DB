@@ -11,6 +11,9 @@ BEGIN
 
 	BEGIN TRY
 		BEGIN TRAN
+			IF(SELECT COUNT(*) FROM Reservation WHERE ReservationID = @ReservationId) < 1
+				RAISERROR('Reservation with this ID does not exist!', 11, 1);
+
 			UPDATE Reservation
 			SET Active = 0, ModifiedDate = GETDATE(), CanceledDate = GETDATE()
 			WHERE ReservationID = @ReservationId

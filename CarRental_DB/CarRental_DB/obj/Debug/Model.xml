@@ -50,12 +50,12 @@
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[ReservedVehicle]" />
+					<References Name="[dbo].[VehicleType]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[ReservedVehicle].[CreatedDate]" />
+					<References Name="[dbo].[VehicleType].[CreatedDate]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
@@ -66,12 +66,12 @@
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Reservation]" />
+					<References Name="[dbo].[VehicleManufacturer]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[Reservation].[CreatedDate]" />
+					<References Name="[dbo].[VehicleManufacturer].[CreatedDate]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
@@ -98,31 +98,15 @@
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[VehicleManufacturer]" />
+					<References Name="[dbo].[Reservation]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[VehicleManufacturer].[CreatedDate]" />
+					<References Name="[dbo].[Reservation].[CreatedDate]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[(getdate())]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[VehicleType]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
-					<References Name="[dbo].[VehicleType].[CreatedDate]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -138,76 +122,7 @@
 					<References Name="[dbo].[Client].[CreatedDate]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
-		</Element>
-		<Element Type="SqlForeignKeyConstraint">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[ReservedVehicle].[ReservationID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ReservedVehicle]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[Reservation].[ReservationID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[Reservation]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
-		</Element>
-		<Element Type="SqlForeignKeyConstraint">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[ReservedVehicle].[VehicleID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[ReservedVehicle]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[Vehicle].[VehicleID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[Vehicle]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
-		</Element>
-		<Element Type="SqlForeignKeyConstraint">
-			<Relationship Name="Columns">
-				<Entry>
-					<References Name="[dbo].[Reservation].[ClientID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Reservation]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignColumns">
-				<Entry>
-					<References Name="[dbo].[Client].[ClientID]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForeignTable">
-				<Entry>
-					<References Name="[dbo].[Client]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="7" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint">
 			<Relationship Name="Columns">
@@ -230,7 +145,7 @@
 					<References Name="[dbo].[VehicleManufacturer]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="8" />
 		</Element>
 		<Element Type="SqlForeignKeyConstraint">
 			<Relationship Name="Columns">
@@ -253,6 +168,90 @@
 					<References Name="[dbo].[VehicleType]" />
 				</Entry>
 			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Reservation].[ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+		</Element>
+		<Element Type="SqlForeignKeyConstraint">
+			<Relationship Name="Columns">
+				<Entry>
+					<References Name="[dbo].[Reservation].[VehicleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignColumns">
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForeignTable">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
@@ -261,7 +260,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[ReservedVehicle].[ReservedVehicleID]" />
+								<References Name="[dbo].[Vehicle].[VehicleID]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -269,7 +268,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[ReservedVehicle]" />
+					<References Name="[dbo].[Vehicle]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
@@ -299,63 +298,6 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Vehicle].[VehicleID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Vehicle]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[VehicleManufacturer]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
-								<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[VehicleType]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[Client].[ClientID]" />
 							</Entry>
 						</Relationship>
@@ -367,7 +309,88 @@
 					<References Name="[dbo].[Client]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="19" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CancelReservation]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	BEGIN TRY
+		BEGIN TRAN
+			IF(SELECT COUNT(*) FROM Reservation WHERE ReservationID = @ReservationId) < 1
+				RAISERROR('Reservation with this ID does not exist!', 11, 1);
+
+			UPDATE Reservation
+			SET Active = 0, ModifiedDate = GETDATE(), CanceledDate = GETDATE()
+			WHERE ReservationID = @ReservationId
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CancelReservation].[@ReservationId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ModifiedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[CanceledDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CancelReservation].[@ReservationId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="220" />
+				<Property Name="Length" Value="736" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Cancels a reservation, sets field Active to 0/false&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CancelReservation]&#xD;&#xA;&#x9;@ReservationId int&#xD;&#xA;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Client]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -430,7 +453,7 @@
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
 										<Entry>
-											<References ExternalSource="BuiltIns" Name="[datetime]" />
+											<References ExternalSource="BuiltIns" Name="[date]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -501,7 +524,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="8" />
+						<AttachedAnnotation Disambiguator="7" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -525,7 +548,7 @@
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="19" />
+			<AttachedAnnotation Disambiguator="16" />
 		</Element>
 		<Element Type="SqlIndex" Name="[dbo].[Client].[IX_Firstname]">
 			<Relationship Name="ColumnSpecifications">
@@ -566,16 +589,23 @@
 		<Element Type="SqlProcedure" Name="[dbo].[CreateClient]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-INSERT INTO Client
-(Firstname, Lastname, Birthdate, Gender, DriverLicenceNumber, PersonalIDCardNumber)
-VALUES
-(
-@Firstname, @Lastname, @Birthdate, @Gender, @DriverLicenceNumber, @PersonalIDCardNumber
-)
+SET NOCOUNT ON
+BEGIN TRY
+	BEGIN TRAN
+		INSERT INTO Client
+			(Firstname, Lastname, Birthdate, Gender, DriverLicenceNumber, PersonalIDCardNumber)
+		VALUES
+			(@Firstname, @Lastname, @Birthdate, @Gender, @DriverLicenceNumber, @PersonalIDCardNumber)
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+        ROLLBACK TRAN;
 
-SELECT *
-FROM Client
-WHERE ClientID = (SELECT SCOPE_IDENTITY())]]></Value>
+	THROW
+END CATCH
+
+SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
@@ -619,7 +649,7 @@ WHERE ClientID = (SELECT SCOPE_IDENTITY())]]></Value>
 					<References Name="[dbo].[CreateClient].[@PersonalIDCardNumber]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Client].[ClientID]" />
+					<References ExternalSource="BuiltIns" Name="[int]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -725,10 +755,802 @@ WHERE ClientID = (SELECT SCOPE_IDENTITY())]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="475" />
+				<Property Name="Length" Value="596" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CreateClient]&#xD;&#xA;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate datetime, @Gender char&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateReservation]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SET NOCOUNT ON;
+BEGIN TRY
+	BEGIN TRAN
+
+		IF dbo.GetNumberOfActiveReservationsForClient(@ClientID) >= 3
+			RAISERROR('This client has 3 active reservations. This is the maximum number of active reservations a client can have at once!', 11, 1);
+
+		IF dbo.IsVehicleReservedForPeriod(@VehicleId, @ReservationDateFrom, @ReservationDateTo) = 1
+			RAISERROR('This vehicle is already reserved for this period!', 11, 1);
+
+		IF dbo.GetNumberOfReservationsWithSameVehicleTypeForClient(@ClientId, @VehicleId, @ReservationDateFrom, @ReservationDateTo) >= 1
+			RAISERROR('Two vehicles of the same type can not be reserved at the same time by the same client!', 11, 1);
+
+		INSERT INTO [dbo].[Reservation]
+			   ([ClientID]
+			   ,[VehicleID]
+			   ,[ReservationDateFrom]
+			   ,[ReservationDateTo]
+			   ,[Active])
+		 VALUES
+			   (@ClientId
+			   ,@VehicleId
+			   ,@ReservationDateFrom
+			   ,@ReservationDateTo
+			   ,1)
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+        ROLLBACK TRAN;
+
+	THROW;
+END CATCH
+
+SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[GetNumberOfActiveReservationsForClient]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateReservation].[@ClientId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[IsVehicleReservedForPeriod]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateReservation].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateReservation].[@ReservationDateFrom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateReservation].[@ReservationDateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateFrom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateReservation].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateReservation].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateReservation].[@ReservationDateFrom]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateReservation].[@ReservationDateTo]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="190" />
+				<Property Name="Length" Value="1408" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Creates a reservation&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CreateReservation]&#xD;&#xA; @ClientId int, @VehicleId int, @ReservationDateFrom datetime, @ReservationDateTo datetime&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateVehicle]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SET NOCOUNT ON
+	BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO Vehicle
+				(VehicleName, VehicleManufacturerID, VehicleTypeID, Color, DateManufactured, PricePerDay)
+			VALUES
+				(@VehicleName, @VehicleManufacturerID, @VehicleTypeID, @Color, @DateManufactured, @PricePerDay)
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+
+SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[Color]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[DateManufactured]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[PricePerDay]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@VehicleTypeId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@Color]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@DateManufactured]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicle].[@PricePerDay]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@VehicleName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@Color]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@DateManufactured]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicle].[@PricePerDay]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="4" />
+									<Property Name="Precision" Value="19" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[decimal]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="202" />
+				<Property Name="Length" Value="820" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Inserts a record in Vehicle table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE CreateVehicle&#xD;&#xA;@VehicleName nvarchar(200)&#xD;&#xA;&#x9;, @VehicleManufacturerId int&#xD;&#xA;&#x9;, @VehicleTypeId int&#xD;&#xA;&#x9;, @Color nvarchar(20)&#xD;&#xA;&#x9;, @DateManufactured date&#xD;&#xA;&#x9;, @PricePerDay decimal(19,4)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateVehicleManufacturer]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SET NOCOUNT ON;
+	BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO VehicleManufacturer
+				(VehicleManufacturerName, VehicleManufacturerDescription)
+			VALUES
+				(@VehicleManufacturerName, @VehicleManufacturerDescription)
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+
+	SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicleManufacturer].[@VehicleManufacturerName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicleManufacturer].[@VehicleManufacturerDescription]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicleManufacturer].[@VehicleManufacturerName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicleManufacturer].[@VehicleManufacturerDescription]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="215" />
+				<Property Name="Length" Value="715" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Inserts new record in VehicleManfacturer table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE CreateVehicleManufacturer&#xD;&#xA;&#x9;@VehicleManufacturerName nvarchar(200), @VehicleManufacturerDescription nvarchar(max)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CreateVehicleType]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SET NOCOUNT ON;
+	BEGIN TRY
+		BEGIN TRAN
+			INSERT INTO VehicleType
+				(VehicleTypeName, VehicleTypeDescription)
+			VALUES
+				(@VehicleTypeName, @VehicleTypeDescription)
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+
+	SELECT CONVERT(int, SCOPE_IDENTITY())]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicleType].[@VehicleTypeName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CreateVehicleType].[@VehicleTypeDescription]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicleType].[@VehicleTypeName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CreateVehicleType].[@VehicleTypeDescription]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="208" />
+				<Property Name="Length" Value="644" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Inserts a record in Vehicle Types table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE CreateVehicleType&#xD;&#xA;&#x9;@VehicleTypeName nvarchar(200), @VehicleTypeDescription nvarchar(max)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[DeleteClient]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+
+SET NOCOUNT ON
+
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Client WHERE ClientID = @ClientId) < 1
+			RAISERROR('Client with this ID does not exist!', 11, 1);
+
+		DELETE FROM Client
+		WHERE ClientID = @ClientId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+        ROLLBACK TRAN;
+
+	THROW;
+END CATCH]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DeleteClient].[@ClientId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DeleteClient].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="387" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[DeleteClient]&#xD;&#xA;@ClientId int&#xD;&#xA;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[DeleteVehicle]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+SET NOCOUNT ON
+
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Vehicle WHERE VehicleID = @VehicleId) < 1
+			RAISERROR('Vehicle with this ID does not exist!', 11, 1);
+
+		DELETE FROM Vehicle
+		WHERE VehicleId = @VehicleId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+        ROLLBACK TRAN;
+
+	THROW;
+END CATCH]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DeleteVehicle].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DeleteVehicle].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="216" />
+				<Property Name="Length" Value="601" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Deletes a record from Vehicle table based on ID&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE DeleteVehicle&#xD;&#xA;&#x9;@VehicleId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[DeleteVehicleManufacturer]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON
+
+	BEGIN TRY
+		BEGIN TRAN
+			IF(SELECT COUNT(*) FROM VehicleManufacturer WHERE VehicleManufacturerID = @VehicleManufacturerId) < 1
+				RAISERROR('Vehicle Manufacturer with this ID does not exist!', 11, 1);
+
+			DELETE FROM VehicleManufacturer
+			WHERE VehicleManufacturerID = @VehicleManufacturerId
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DeleteVehicleManufacturer].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DeleteVehicleManufacturer].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="226" />
+				<Property Name="Length" Value="740" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Deletes record from VehicleManufacturer table based on ID&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE DeleteVehicleManufacturer&#xD;&#xA;&#x9;@VehicleManufacturerId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[DeleteVehicleType]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON
+
+	BEGIN TRY
+		BEGIN TRAN
+			IF(SELECT COUNT(*) FROM VehicleType WHERE VehicleTypeID = @VehicleTypeId) < 1
+				RAISERROR('Vehicle type with this ID does not exist!', 11, 1);
+
+			DELETE FROM VehicleType
+			WHERE VehicleTypeID = @VehicleTypeId
+		COMMIT TRAN
+	END TRY
+	BEGIN CATCH
+		IF(@@TRANCOUNT > 0)
+			ROLLBACK TRAN;
+
+		THROW;
+	END CATCH
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[DeleteVehicleType].[@VehicleTypeId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[DeleteVehicleType].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="201" />
+				<Property Name="Length" Value="644" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Deletes vehicle type based on ID&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE DeleteVehicleType &#xD;&#xA;&#x9;@VehicleTypeId int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetAllClients]">
@@ -779,6 +1601,93 @@ FROM Reservation]]></Value>
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE GetAllReservations&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAllVehicleManufacturers]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT *
+	FROM VehicleManufacturer
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="219" />
+				<Property Name="Length" Value="340" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all records from VehicleManufacturer table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetAllVehicleManufacturers&#x9;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAllVehicles]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT *
+	FROM Vehicle
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="207" />
+				<Property Name="Length" Value="309" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all records from Vehicle table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetAllVehicles] &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAllVehicleTypes]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT *
+	FROM VehicleType
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="194" />
+				<Property Name="Length" Value="295" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all vehicle types&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetAllVehicleTypes&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetClientById]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -827,24 +1736,20 @@ WHERE ClientID = @ClientId]]></Value>
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetClientById] @ClientId int&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
-		<Element Type="SqlProcedure" Name="[dbo].[InsertClient]">
+		<Element Type="SqlProcedure" Name="[dbo].[GetClientsByFilters]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
+	SET NOCOUNT ON;
 
-	INSERT INTO [dbo].[Client]
-           ([Firstname]
-           ,[Lastname]
-		   ,[Birthdate]
-           ,[DriverLicenceNumber]
-		   )
-     VALUES
-           (@Firstname
-		   ,'test'
-		   ,'2000-01-01'
-		   ,'TESTT'
-		   )
-
+	SELECT *
+	FROM Client
+	WHERE (Firstname = @Firstname OR @Firstname IS NULL)
+		AND (Lastname = @Lastname OR @Lastname IS NULL)
+		AND (DriverLicenceNumber = @DriverLicenceNumber OR @DriverLicenceNumber IS NULL)
+		AND (PersonalIDCardNumber = @PersonalIDCardNumber OR @PersonalIDCardNumber IS NULL)
+		AND (Birthdate = @Birthdate OR @Birthdate IS NULL)
+		AND (Gender = @Gender OR @Gender IS NULL)
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -856,21 +1761,42 @@ END]]></Value>
 					<References Name="[dbo].[Client].[Firstname]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@Firstname]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Client].[Lastname]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[Client].[Birthdate]" />
+					<References Name="[dbo].[GetClientsByFilters].[@Lastname]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Client].[DriverLicenceNumber]" />
 				</Entry>
 				<Entry>
-					<References Name="[dbo].[InsertClient].[@Firstname]" />
+					<References Name="[dbo].[GetClientsByFilters].[@DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@Gender]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
 				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[InsertClient].[@Firstname]">
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@Firstname]">
 						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -885,6 +1811,85 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@Lastname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@DriverLicenceNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@PersonalIDCardNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@Birthdate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@Gender]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -892,12 +1897,604 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="CreateOffset" Value="194" />
-				<Property Name="Length" Value="559" />
+				<Property Name="CreateOffset" Value="426" />
+				<Property Name="Length" Value="1053" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;&lt;Author,,Name&gt;&#xD;&#xA;-- Create date: &lt;Create Date,,&gt;&#xD;&#xA;-- Description:&#x9;&lt;Description,,&gt;&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE InsertClient &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@Firstname nvarchar(200)&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Returns filtered clients&#xD;&#xA;-- S ovim nacinom filtriranja, ako zelimo dodati novi parametar to znaci da moramo dodati i u stored proceduri i u c# kodu,&#xD;&#xA;-- ali zadatak je zahtjevao da se komunikacija sa bazom obavlja preko stored procedura pa sam ovako uradio&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetClientsByFilters&#xD;&#xA;&#x9;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate date, @Gender char&#xD;&#xA;AS" />
 			</Annotation>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[GetNumberOfActiveReservationsForClient]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfActiveReservationsForClient].[@Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @NumberOfReservations int
+
+	SET @NumberOfReservations = (SELECT COUNT(*) FROM Reservation AS R WHERE R.ClientID = @Client AND R.Active = 1)
+
+	RETURN @NumberOfReservations
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="219" />
+							<Property Name="Length" Value="509" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 2022-09-19&#xD;&#xA;-- Description:&#x9;Returns number of active reservations for a client&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION GetNumberOfActiveReservationsForClient&#xD;&#xA;(&#xD;&#xA;&#x9;@Client int&#xD;&#xA;)&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetNumberOfActiveReservationsForClient].[@Client]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@ClientId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateFrom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@To]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@From]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	-- Declare the return variable here
+	DECLARE @NumberOfReservations int
+
+	-- Add the T-SQL statements to compute the return value here
+	SET @NumberOfReservations = (SELECT COUNT(*)
+				FROM Vehicle AS VV
+				WHERE VV.VehicleID = @VehicleId
+					AND VV.VehicleTypeID IN
+					(
+						SELECT V.VehicleTypeID
+							FROM Reservation AS R
+							JOIN Vehicle AS V ON V.VehicleID = R.VehicleID
+							WHERE R.ClientID = @ClientId
+							AND R.Active = 1
+							AND ((R.ReservationDateFrom <= @To) AND (R.ReservationDateTo >= @From))
+					))
+
+	RETURN @NumberOfReservations
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="256" />
+							<Property Name="Length" Value="1014" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 2022-09-19&#xD;&#xA;-- Description:&#x9;Returns amount of active transactions for a client that have a vehicle of the same type&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION [dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient]&#xD;&#xA;(&#xD;&#xA;&#x9;@ClientId int, @VehicleId int, @From datetime, @To datetime&#xD;&#xA;)&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@From]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient].[@To]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetReservationById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT *
+	FROM Reservation
+	WHERE ReservationID = @ReservationId
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetReservationById].[@ReservationId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetReservationById].[@ReservationId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="191" />
+				<Property Name="Length" Value="352" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Gets reservation by id&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetReservationById&#xD;&#xA;&#x9;@ReservationId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetVehicleById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT *
+	FROM Vehicle
+	WHERE VehicleID = @VehicleId
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetVehicleById].[@VehicleId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetVehicleById].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="216" />
+				<Property Name="Length" Value="360" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns a record from Vehicle table based on Id&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetVehicleById&#xD;&#xA;&#x9;@VehicleId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetVehicleManufacturerById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT *
+	FROM VehicleManufacturer
+	WHERE VehicleManufacturerID = @VehicleManufacturerId
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetVehicleManufacturerById].[@VehicleManufacturerId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetVehicleManufacturerById].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="229" />
+				<Property Name="Length" Value="433" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns a records from VehicleManufacturer table based on id&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetVehicleManufacturerById&#xD;&#xA;&#x9;@VehicleManufacturerId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetVehicleTypeById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+    SELECT *
+	FROM VehicleType
+	WHERE VehicleTypeID = @VehicleTypeId
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetVehicleTypeById].[@VehicleTypeId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetVehicleTypeById].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="195" />
+				<Property Name="Length" Value="359" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns vehicle type by ID&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetVehicleTypeById&#xD;&#xA;&#x9;@VehicleTypeId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[IsVehicleReservedForPeriod]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[IsVehicleReservedForPeriod].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateFrom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[IsVehicleReservedForPeriod].[@To]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ReservationDateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[IsVehicleReservedForPeriod].[@From]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @IsReserved bit = 0
+
+	IF(SELECT COUNT(*) 
+	FROM Reservation AS R 
+	JOIN Vehicle AS V ON V.VehicleID = R.VehicleID 
+	WHERE R.Active = 1 
+		AND R.VehicleID = @VehicleId
+		AND ((R.ReservationDateFrom <= @To) AND (R.ReservationDateTo >= @From))
+		) >= 1
+		SET @IsReserved = 1
+
+	RETURN @IsReserved
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="250" />
+							<Property Name="Length" Value="690" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 2022-09-19&#xD;&#xA;-- Description:&#x9;Returns true if vehicle is reserved for requested period, otherwise returns false&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION IsVehicleReservedForPeriod&#xD;&#xA;(&#xD;&#xA;&#x9;@VehicleId int, @From datetime, @To datetime&#xD;&#xA;)&#xD;&#xA;RETURNS bit&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[IsVehicleReservedForPeriod].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[IsVehicleReservedForPeriod].[@From]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[IsVehicleReservedForPeriod].[@To]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[bit]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Reservation]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -921,6 +2518,22 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Reservation].[ClientID]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Reservation].[VehicleID]">
 						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
@@ -997,11 +2610,26 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Reservation].[ModifiedDate]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Reservation].[CanceledDate]">
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
@@ -1022,64 +2650,64 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<AttachedAnnotation Disambiguator="15" />
+			<AttachedAnnotation Disambiguator="10" />
 			<AttachedAnnotation Disambiguator="11" />
 		</Element>
-		<Element Type="SqlTable" Name="[dbo].[ReservedVehicle]">
+		<Element Type="SqlProcedure" Name="[dbo].[SearchReservations]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT *
+	FROM Reservation
+	WHERE (ReservationDateFrom >= @DateFrom OR @DateFrom IS NULL)
+		AND (ReservationDateTo <= @DateTo OR @DateTo IS NULL)
+		AND (ClientID = @ClientId OR @ClientId IS NULL)
+		AND (VehicleID = @VehicleId OR @VehicleId IS NULL)
+		AND (Active = @Active OR @Active IS NULL)
+END]]></Value>
+			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
-			<Relationship Name="Columns">
+			<Relationship Name="BodyDependencies">
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[ReservedVehicle].[ReservedVehicleID]">
-						<Property Name="IsNullable" Value="False" />
-						<Property Name="IsIdentity" Value="True" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
+					<References Name="[dbo].[Reservation]" />
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[ReservedVehicle].[ReservationID]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
+					<References Name="[dbo].[Reservation].[ReservationDateFrom]" />
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[ReservedVehicle].[VehicleID]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
+					<References Name="[dbo].[SearchReservations].[@DateFrom]" />
 				</Entry>
 				<Entry>
-					<Element Type="SqlSimpleColumn" Name="[dbo].[ReservedVehicle].[CreatedDate]">
-						<Property Name="IsNullable" Value="False" />
-						<Relationship Name="TypeSpecifier">
+					<References Name="[dbo].[Reservation].[ReservationDateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchReservations].[@DateTo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchReservations].[@ClientId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchReservations].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Reservation].[Active]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchReservations].[@Active]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchReservations].[@DateFrom]">
+						<Relationship Name="Type">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Relationship Name="Type">
@@ -1090,7 +2718,66 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchReservations].[@DateTo]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchReservations].[@ClientId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchReservations].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchReservations].[@Active]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bit]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
 					</Element>
 				</Entry>
 			</Relationship>
@@ -1099,24 +2786,148 @@ END]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="14" />
-			<AttachedAnnotation Disambiguator="9" />
-			<AttachedAnnotation Disambiguator="10" />
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="208" />
+				<Property Name="Length" Value="671" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Searches for reservations by parameters&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[SearchReservations]&#xD;&#xA;&#x9;@DateFrom datetime, @DateTo datetime, @ClientId int, @VehicleId int, @Active bit&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SearchVehicles]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT *
+	FROM Vehicle
+	WHERE (VehicleName = @VehicleName OR @VehicleName IS NULL)
+		AND (VehicleManufacturerId = @VehicleManufacturerId OR @VehicleManufacturerId IS NULL)
+		AND (VehicleTypeId = @VehicleTypeId OR @VehicleTypeId IS NULL)
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchVehicles].[@VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchVehicles].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchVehicles].[@VehicleTypeId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchVehicles].[@VehicleName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchVehicles].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchVehicles].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="204" />
+				<Property Name="Length" Value="591" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Searches for vehicles by parameters&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE SearchVehicles&#xD;&#xA;&#x9;@VehicleName nvarchar(200), @VehicleManufacturerId int, @VehicleTypeId int&#xD;&#xA;AS" />
+			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[UpdateClient]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
-UPDATE Client SET Firstname = ISNULL(@Firstname, Firstname)
-	, Lastname = ISNULL(@Lastname, Lastname)
-	, Birthdate = ISNULL(@Birthdate, Birthdate)
-	, Gender = ISNULL(@Gender, Gender)
-	, DriverLicenceNumber = ISNULL(@DriverLicenceNumber, DriverLicenceNumber)
-	, PersonalIDCardNumber = ISNULL(@PersonalIDCardNumber, PersonalIDCardNumber)
-	, ModifiedDate = GETDATE()
-WHERE ClientID = @ClientId]]></Value>
+
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Client WHERE ClientID = @ClientId) < 1
+			RAISERROR('Client with this ID does not exist!', 11, 1);
+
+		UPDATE Client SET Firstname = ISNULL(@Firstname, Firstname)
+			, Lastname = ISNULL(@Lastname, Lastname)
+			, Birthdate = ISNULL(@Birthdate, Birthdate)
+			, Gender = ISNULL(@Gender, Gender)
+			, DriverLicenceNumber = ISNULL(@DriverLicenceNumber, DriverLicenceNumber)
+			, PersonalIDCardNumber = ISNULL(@PersonalIDCardNumber, PersonalIDCardNumber)
+			, ModifiedDate = GETDATE()
+		WHERE ClientID = @ClientId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+		ROLLBACK TRAN;
+	THROW;
+END CATCH]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateClient].[@ClientId]" />
+				</Entry>
 				<Entry>
 					<References Name="[dbo].[Client]" />
 				</Entry>
@@ -1161,9 +2972,6 @@ WHERE ClientID = @ClientId]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Client].[ClientID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[UpdateClient].[@ClientId]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -1284,10 +3092,447 @@ WHERE ClientID = @ClientId]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="624" />
+				<Property Name="Length" Value="891" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[UpdateClient]&#xD;&#xA;@ClientId int&#xD;&#xA;, @Firstname nvarchar(200)&#xD;&#xA;, @Lastname nvarchar(200)&#xD;&#xA;, @DriverLicenceNumber nvarchar(20)&#xD;&#xA;, @PersonalIDCardNumber nvarchar(20)&#xD;&#xA;, @Birthdate datetime&#xD;&#xA;, @Gender char&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[UpdateVehicle]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Vehicle WHERE VehicleID = @VehicleId) < 1
+			RAISERROR('Vehicle with this ID does not exist!', 11, 1);
+
+		UPDATE Vehicle SET VehicleName = ISNULL(@VehicleName, VehicleName)
+			, VehicleManufacturerID = ISNULL(@VehicleManufacturerID, VehicleManufacturerID)
+			, VehicleTypeId = ISNULL(@VehicleTypeId, VehicleTypeId)
+			, Color = ISNULL(@Color, Color)
+			, DateManufactured = ISNULL(@DateManufactured, DateManufactured)
+			, PricePerDay = ISNULL(@PricePerDay, PricePerDay)
+			, ModifiedDate = GETDATE()
+		WHERE VehicleID = @VehicleId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+		ROLLBACK TRAN;
+	THROW;
+END CATCH]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@VehicleId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@VehicleTypeId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[Color]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@Color]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[DateManufactured]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@DateManufactured]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[PricePerDay]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicle].[@PricePerDay]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[ModifiedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@VehicleId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@VehicleName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@Color]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@DateManufactured]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicle].[@PricePerDay]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Scale" Value="4" />
+									<Property Name="Precision" Value="19" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[decimal]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="202" />
+				<Property Name="Length" Value="1111" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Updates a record in Vehicle table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE UpdateVehicle&#xD;&#xA;&#x9;@VehicleId int&#xD;&#xA;&#x9;, @VehicleName nvarchar(200)&#xD;&#xA;&#x9;, @VehicleManufacturerId int&#xD;&#xA;&#x9;, @VehicleTypeId int&#xD;&#xA;&#x9;, @Color nvarchar(20)&#xD;&#xA;&#x9;, @DateManufactured date&#xD;&#xA;&#x9;, @PricePerDay decimal(19,4)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[UpdateVehicleManufacturer]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM VehicleManufacturer WHERE VehicleManufacturerID = @VehicleManufacturerId) < 1
+			RAISERROR('Vehicle Manufacturer with this ID does not exist!', 11, 1);
+
+		UPDATE VehicleManufacturer SET VehicleManufacturerName = ISNULL(@VehicleManufacturerName, VehicleManufacturerName)
+			, VehicleManufacturerDescription = ISNULL(@VehicleManufacturerDescription, VehicleManufacturerDescription)
+			, ModifiedDate = GETDATE()
+		WHERE VehicleManufacturerID = @VehicleManufacturerId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+		ROLLBACK TRAN;
+	THROW;
+END CATCH]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[ModifiedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleManufacturer].[VehicleManufacturerID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleManufacturer].[@VehicleManufacturerDescription]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="203" />
+				<Property Name="Length" Value="991" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Updates VehicleManufacturer record&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[UpdateVehicleManufacturer]&#xD;&#xA;&#x9;@VehicleManufacturerId int, @VehicleManufacturerName nvarchar(200), @VehicleManufacturerDescription nvarchar(max)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[UpdateVehicleType]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN TRY
+	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM VehicleType WHERE VehicleTypeID = @VehicleTypeId) < 1
+			RAISERROR('Vehicle type with this ID does not exist!', 11, 1);
+
+		UPDATE VehicleType SET VehicleTypeName = ISNULL(@VehicleTypeName, VehicleTypeName)
+			, VehicleTypeDescription = ISNULL(@VehicleTypeDescription, VehicleTypeDescription)
+			, ModifiedDate = GETDATE()
+		WHERE VehicleTypeID = @VehicleTypeId
+	COMMIT TRAN
+END TRY
+BEGIN CATCH
+	IF(@@TRANCOUNT > 0)
+		ROLLBACK TRAN;
+
+	THROW;
+END CATCH]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleType].[@VehicleTypeId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleType].[@VehicleTypeName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateVehicleType].[@VehicleTypeDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[ModifiedDate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[VehicleType].[VehicleTypeID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleType].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleType].[@VehicleTypeName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateVehicleType].[@VehicleTypeDescription]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="IsMax" Value="True" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="189" />
+				<Property Name="Length" Value="843" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Updates Vehicle Type&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[UpdateVehicleType]&#xD;&#xA;&#x9;@VehicleTypeId int, @VehicleTypeName nvarchar(200), @VehicleTypeDescription nvarchar(max)&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Vehicle]">
@@ -1303,6 +3548,23 @@ WHERE ClientID = @ClientId]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Vehicle].[VehicleName]">
+						<Property Name="IsNullable" Value="False" />
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -1430,9 +3692,9 @@ WHERE ClientID = @ClientId]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="16" />
-			<AttachedAnnotation Disambiguator="12" />
-			<AttachedAnnotation Disambiguator="13" />
+			<AttachedAnnotation Disambiguator="14" />
+			<AttachedAnnotation Disambiguator="8" />
+			<AttachedAnnotation Disambiguator="9" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[VehicleManufacturer]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1476,7 +3738,7 @@ WHERE ClientID = @ClientId]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="1" />
+									<Property Name="IsMax" Value="True" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -1501,7 +3763,7 @@ WHERE ClientID = @ClientId]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="6" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1525,7 +3787,7 @@ WHERE ClientID = @ClientId]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="17" />
+			<AttachedAnnotation Disambiguator="13" />
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[VehicleType]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -1569,7 +3831,7 @@ WHERE ClientID = @ClientId]]></Value>
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
-									<Property Name="Length" Value="1" />
+									<Property Name="IsMax" Value="True" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
@@ -1594,7 +3856,7 @@ WHERE ClientID = @ClientId]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="7" />
+						<AttachedAnnotation Disambiguator="3" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1618,7 +3880,7 @@ WHERE ClientID = @ClientId]]></Value>
 					<References ExternalSource="BuiltIns" Name="[dbo]" />
 				</Entry>
 			</Relationship>
-			<AttachedAnnotation Disambiguator="18" />
+			<AttachedAnnotation Disambiguator="12" />
 		</Element>
 	</Model>
 </DataSchemaModel>

@@ -10,6 +10,9 @@ AS
 
 BEGIN TRY
 	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Client WHERE ClientID = @ClientId) < 1
+			RAISERROR('Client with this ID does not exist!', 11, 1);
+
 		UPDATE Client SET Firstname = ISNULL(@Firstname, Firstname)
 			, Lastname = ISNULL(@Lastname, Lastname)
 			, Birthdate = ISNULL(@Birthdate, Birthdate)
@@ -22,6 +25,6 @@ BEGIN TRY
 END TRY
 BEGIN CATCH
 	IF(@@TRANCOUNT > 0)
-		ROLLBACK TRAN
-	THROW
+		ROLLBACK TRAN;
+	THROW;
 END CATCH

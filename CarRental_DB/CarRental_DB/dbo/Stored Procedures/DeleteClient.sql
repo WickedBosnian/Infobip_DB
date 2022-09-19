@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE DeleteClient
+﻿CREATE PROCEDURE [dbo].[DeleteClient]
 @ClientId int
 
 AS
@@ -7,6 +7,9 @@ SET NOCOUNT ON
 
 BEGIN TRY
 	BEGIN TRAN
+		IF(SELECT COUNT(*) FROM Client WHERE ClientID = @ClientId) < 1
+			RAISERROR('Client with this ID does not exist!', 11, 1);
+
 		DELETE FROM Client
 		WHERE ClientID = @ClientId
 	COMMIT TRAN
@@ -15,5 +18,5 @@ BEGIN CATCH
 	IF(@@TRANCOUNT > 0)
         ROLLBACK TRAN;
 
-	THROW
+	THROW;
 END CATCH

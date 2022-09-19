@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[CreateClient]
 @Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate datetime, @Gender char
 AS
-
+SET NOCOUNT ON
 BEGIN TRY
 	BEGIN TRAN
 		INSERT INTO Client
