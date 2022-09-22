@@ -586,6 +586,57 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[CountOfClients]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @CountOfClients INT
+	SET @CountOfClients = (SELECT COUNT(ClientID) FROM Client)
+	RETURN @CountOfClients
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="193" />
+							<Property Name="Length" Value="370" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 21.09.2022&#xD;&#xA;-- Description:&#x9;Returns count of clients&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION CountOfClients()&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateClient]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -1890,12 +1941,62 @@ END]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 SELECT *
-FROM Client]]></Value>
+FROM Client
+ORDER BY ClientID
+OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
+FETCH NEXT @RowsPerPage ROWS ONLY;]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetAllClients].[@PageNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetAllClients].[@RowsPerPage]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetAllClients].[@PageNumber]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetAllClients].[@RowsPerPage]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[10]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
 				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
@@ -1904,10 +2005,11 @@ FROM Client]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="65" />
+				<Property Name="CreateOffset" Value="206" />
+				<Property Name="Length" Value="419" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetAllClients]&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all records from Client table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetAllClients]&#xD;&#xA;&#x9;@PageNumber INT = 1, @RowsPerPage INT = 10&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetAllReservations]">

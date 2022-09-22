@@ -103,5 +103,6 @@
     <Build Include="dbo\Functions\DoesVehicleExist.sql" />
     <Build Include="dbo\Functions\DoesManufacturerExist.sql" />
     <Build Include="dbo\Functions\DoesClientExist.sql" />
+    <Build Include="dbo\Functions\CountOfClients.sql" />
   </ItemGroup>
 </Project>
