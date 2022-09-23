@@ -104,5 +104,10 @@
     <Build Include="dbo\Functions\DoesManufacturerExist.sql" />
     <Build Include="dbo\Functions\DoesClientExist.sql" />
     <Build Include="dbo\Functions\CountOfClients.sql" />
+    <Build Include="dbo\Functions\CountOfVehiclesWithFilters.sql" />
+    <Build Include="dbo\Functions\CountOfVehicles.sql" />
+    <Build Include="dbo\Functions\CountOfClientsWithFilters.sql" />
+    <Build Include="dbo\Stored Procedures\GetVehiclesForPagination.sql" />
+    <Build Include="dbo\Stored Procedures\GetClientsForPagination.sql" />
   </ItemGroup>
 </Project>

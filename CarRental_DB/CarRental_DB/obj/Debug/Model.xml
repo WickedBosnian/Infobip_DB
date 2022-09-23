@@ -637,6 +637,379 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[CountOfClientsWithFilters]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@Firstname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@Lastname]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@DriverLicenceNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@PersonalIDCardNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@Birthdate]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfClientsWithFilters].[@Gender]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @CountOfClients INT = 0
+
+	SET @CountOfClients = (SELECT COUNT(ClientID)
+			FROM Client
+			WHERE (Firstname = @Firstname OR @Firstname IS NULL)
+				AND (Lastname = @Lastname OR @Lastname IS NULL)
+				AND (DriverLicenceNumber = @DriverLicenceNumber OR @DriverLicenceNumber IS NULL)
+				AND (PersonalIDCardNumber = @PersonalIDCardNumber OR @PersonalIDCardNumber IS NULL)
+				AND (Birthdate = @Birthdate OR @Birthdate IS NULL)
+				AND (Gender = @Gender OR @Gender IS NULL)
+		)
+
+	RETURN @CountofClients
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="201" />
+							<Property Name="Length" Value="962" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 22.09.2022&#xD;&#xA;-- Description:&#x9;Returns countof filtered clients&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION [dbo].[CountOfClientsWithFilters] &#xD;&#xA;(&#xD;&#xA;&#x9;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate date, @Gender char&#xD;&#xA;)&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@Firstname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@Lastname]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@DriverLicenceNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@PersonalIDCardNumber]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="20" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@Birthdate]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[date]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfClientsWithFilters].[@Gender]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="1" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[char]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[CountOfVehicles]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @CountOfVehicles INT = 0
+	SET @CountOfVehicles = (SELECT COUNT(VehicleID) FROM Vehicle)
+	RETURN @CountOfVehicles
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="194" />
+							<Property Name="Length" Value="391" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 23.09.2022&#xD;&#xA;-- Description:&#x9;Returns count of vehicles&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION [dbo].[CountOfVehicles]()&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlScalarFunction" Name="[dbo].[CountOfVehiclesWithFilters]">
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleManufacturerID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleManufacturerId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleTypeID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleTypeId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	DECLARE @CountOfVehicles INT = 0
+
+	SET @CountOfVehicles = (SELECT COUNT(VehicleID)
+			FROM Vehicle
+			WHERE (VehicleName = @VehicleName OR @VehicleName IS NULL)
+				AND (VehicleManufacturerID = @VehicleManufacturerId OR @VehicleManufacturerId IS NULL)
+				AND (VehicleTypeID = @VehicleTypeId OR @VehicleTypeId IS NULL)
+		)
+
+	RETURN @CountOfVehicles
+
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="203" />
+							<Property Name="Length" Value="729" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 23.09.2022&#xD;&#xA;-- Description:&#x9;Returns count of filtered vehicles&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE FUNCTION CountOfVehiclesWithFilters&#xD;&#xA;(&#xD;&#xA;&#x9;@VehicleName nvarchar(200), @VehicleManufacturerId nvarchar(200), @VehicleTypeId int&#xD;&#xA;)&#xD;&#xA;RETURNS int&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleName]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleManufacturerId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CountOfVehiclesWithFilters].[@VehicleTypeId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Type">
+				<Entry>
+					<Element Type="SqlTypeSpecifier">
+						<Relationship Name="Type">
+							<Entry>
+								<References ExternalSource="BuiltIns" Name="[int]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[CreateClient]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[
@@ -1941,62 +2314,12 @@ END]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 SELECT *
-FROM Client
-ORDER BY ClientID
-OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
-FETCH NEXT @RowsPerPage ROWS ONLY;]]></Value>
+FROM Client]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Client]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[Client].[ClientID]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[GetAllClients].[@PageNumber]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[GetAllClients].[@RowsPerPage]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="Parameters">
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetAllClients].[@PageNumber]">
-						<Property Name="DefaultExpressionScript">
-							<Value><![CDATA[1]]></Value>
-						</Property>
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-				<Entry>
-					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetAllClients].[@RowsPerPage]">
-						<Property Name="DefaultExpressionScript">
-							<Value><![CDATA[10]]></Value>
-						</Property>
-						<Relationship Name="Type">
-							<Entry>
-								<Element Type="SqlTypeSpecifier">
-									<Relationship Name="Type">
-										<Entry>
-											<References ExternalSource="BuiltIns" Name="[int]" />
-										</Entry>
-									</Relationship>
-								</Element>
-							</Entry>
-						</Relationship>
-					</Element>
 				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
@@ -2006,10 +2329,10 @@ FETCH NEXT @RowsPerPage ROWS ONLY;]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="206" />
-				<Property Name="Length" Value="419" />
+				<Property Name="Length" Value="271" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all records from Client table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetAllClients]&#xD;&#xA;&#x9;@PageNumber INT = 1, @RowsPerPage INT = 10&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns all records from Client table&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetAllClients]&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetAllReservations]">
@@ -2185,6 +2508,9 @@ BEGIN
 		AND (PersonalIDCardNumber = @PersonalIDCardNumber OR @PersonalIDCardNumber IS NULL)
 		AND (Birthdate = @Birthdate OR @Birthdate IS NULL)
 		AND (Gender = @Gender OR @Gender IS NULL)
+	ORDER BY ClientID
+	OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
+	FETCH NEXT @RowsPerPage ROWS ONLY;
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -2227,6 +2553,15 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[GetClientsByFilters].[@Gender]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@PageNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsByFilters].[@RowsPerPage]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -2325,6 +2660,42 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@PageNumber]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsByFilters].[@RowsPerPage]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[10]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -2333,10 +2704,85 @@ END]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="426" />
-				<Property Name="Length" Value="1053" />
+				<Property Name="Length" Value="1213" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Returns filtered clients&#xD;&#xA;-- S ovim nacinom filtriranja, ako zelimo dodati novi parametar to znaci da moramo dodati i u stored proceduri i u c# kodu,&#xD;&#xA;-- ali zadatak je zahtjevao da se komunikacija sa bazom obavlja preko stored procedura pa sam ovako uradio&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetClientsByFilters&#xD;&#xA;&#x9;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate date, @Gender char&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 18.09.2022&#xD;&#xA;-- Description:&#x9;Returns filtered clients&#xD;&#xA;-- S ovim nacinom filtriranja, ako zelimo dodati novi parametar to znaci da moramo dodati i u stored proceduri i u c# kodu,&#xD;&#xA;-- ali zadatak je zahtjevao da se komunikacija sa bazom obavlja preko stored procedura pa sam ovako uradio&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[GetClientsByFilters]&#xD;&#xA;&#x9;@Firstname nvarchar(200), @Lastname nvarchar(200), @DriverLicenceNumber nvarchar(20), @PersonalIDCardNumber nvarchar(20), @Birthdate date, @Gender char&#xD;&#xA;&#x9;,@PageNumber INT = 1, @RowsPerPage INT = 10&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetClientsForPagination]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT *
+	FROM Client
+	ORDER BY ClientID
+	OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
+	FETCH NEXT @RowsPerPage ROWS ONLY;]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Client]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Client].[ClientID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsForPagination].[@PageNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetClientsForPagination].[@RowsPerPage]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsForPagination].[@PageNumber]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetClientsForPagination].[@RowsPerPage]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[10]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="251" />
+				<Property Name="Length" Value="471" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 23.09.2022&#xD;&#xA;-- Description:&#x9;Returns clients for pagination based on page number and number of records per page&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetClientsForPagination&#xD;&#xA;&#x9;@PageNumber INT = 1, @RowsPerPage INT = 10&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlScalarFunction" Name="[dbo].[GetNumberOfActiveReservationsForClient]">
@@ -2744,6 +3190,81 @@ END]]></Value>
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Returns a records from VehicleManufacturer table based on id&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetVehicleManufacturerById&#xD;&#xA;&#x9;@VehicleManufacturerId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetVehiclesForPagination]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+	SELECT *
+	FROM Vehicle
+	ORDER BY VehicleID
+	OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
+	FETCH NEXT @RowsPerPage ROWS ONLY;]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Vehicle]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetVehiclesForPagination].[@PageNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetVehiclesForPagination].[@RowsPerPage]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetVehiclesForPagination].[@PageNumber]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetVehiclesForPagination].[@RowsPerPage]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[10]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="236" />
+				<Property Name="Length" Value="460" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 23.09.2022&#xD;&#xA;-- Description:&#x9;Returns vehicles for pagination based on number of records per page&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE GetVehiclesForPagination &#xD;&#xA;&#x9;@PageNumber INT = 1, @RowsPerPage INT = 10&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetVehicleTypeById]">
@@ -3240,6 +3761,9 @@ BEGIN
 	WHERE (VehicleName = @VehicleName OR @VehicleName IS NULL)
 		AND (VehicleManufacturerId = @VehicleManufacturerId OR @VehicleManufacturerId IS NULL)
 		AND (VehicleTypeId = @VehicleTypeId OR @VehicleTypeId IS NULL)
+			ORDER BY VehicleID
+	OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
+	FETCH NEXT @RowsPerPage ROWS ONLY;
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -3264,6 +3788,15 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[SearchVehicles].[@VehicleTypeId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Vehicle].[VehicleID]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchVehicles].[@PageNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SearchVehicles].[@RowsPerPage]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -3313,6 +3846,42 @@ END]]></Value>
 						</Relationship>
 					</Element>
 				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchVehicles].[@PageNumber]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SearchVehicles].[@RowsPerPage]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[10]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 			</Relationship>
 			<Relationship Name="Schema">
 				<Entry>
@@ -3321,10 +3890,10 @@ END]]></Value>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
 				<Property Name="CreateOffset" Value="204" />
-				<Property Name="Length" Value="591" />
+				<Property Name="Length" Value="756" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Searches for vehicles by parameters&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE SearchVehicles&#xD;&#xA;&#x9;@VehicleName nvarchar(200), @VehicleManufacturerId int, @VehicleTypeId int&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Nino Omic&#xD;&#xA;-- Create date: 19.09.2022&#xD;&#xA;-- Description:&#x9;Searches for vehicles by parameters&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[SearchVehicles]&#xD;&#xA;&#x9;@VehicleName nvarchar(200), @VehicleManufacturerId int, @VehicleTypeId int&#xD;&#xA;&#x9;,  @PageNumber int = 1, @RowsPerPage int = 10&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[UpdateClient]">
