@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Deletes vehicle type based on ID
 -- =============================================
-CREATE PROCEDURE DeleteVehicleType 
+CREATE PROCEDURE [dbo].[DeleteVehicleType] 
 	@VehicleTypeId int
 AS
 BEGIN

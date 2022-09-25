@@ -8,8 +8,11 @@
     [PersonalIDCardNumber] NVARCHAR (20)  NULL,
     [CreatedDate]          DATETIME       DEFAULT (getdate()) NOT NULL,
     [ModifiedDate]         DATETIME       NULL,
-    PRIMARY KEY CLUSTERED ([ClientID] ASC)
+    PRIMARY KEY CLUSTERED ([ClientID] ASC),
+    UNIQUE NONCLUSTERED ([DriverLicenceNumber] ASC)
 );
+
+
 
 
 

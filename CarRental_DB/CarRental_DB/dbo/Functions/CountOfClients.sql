@@ -3,7 +3,7 @@
 -- Create date: 21.09.2022
 -- Description:	Returns count of clients
 -- =============================================
-CREATE FUNCTION CountOfClients()
+CREATE FUNCTION [dbo].[CountOfClients]()
 RETURNS int
 AS
 BEGIN

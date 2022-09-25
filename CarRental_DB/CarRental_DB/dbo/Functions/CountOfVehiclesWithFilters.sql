@@ -3,7 +3,7 @@
 -- Create date: 23.09.2022
 -- Description:	Returns count of filtered vehicles
 -- =============================================
-CREATE FUNCTION CountOfVehiclesWithFilters
+CREATE FUNCTION [dbo].[CountOfVehiclesWithFilters]
 (
 	@VehicleName nvarchar(200), @VehicleManufacturerId nvarchar(200), @VehicleTypeId int
 )

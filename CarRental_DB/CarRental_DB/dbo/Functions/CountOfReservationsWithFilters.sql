@@ -3,7 +3,7 @@
 -- Create date: 24.09.2022
 -- Description:	Returns number of records from table Reservation based on input parameters
 -- =============================================
-CREATE FUNCTION CountOfReservationsWithFilters 
+CREATE FUNCTION [dbo].[CountOfReservationsWithFilters] 
 (
 	@DateFrom datetime, @DateTo datetime, @ClientId int, @VehicleId int, @Active bit
 )

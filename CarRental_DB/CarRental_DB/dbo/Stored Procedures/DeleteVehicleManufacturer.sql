@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Deletes record from VehicleManufacturer table based on ID
 -- =============================================
-CREATE PROCEDURE DeleteVehicleManufacturer
+CREATE PROCEDURE [dbo].[DeleteVehicleManufacturer]
 	@VehicleManufacturerId int
 AS
 BEGIN

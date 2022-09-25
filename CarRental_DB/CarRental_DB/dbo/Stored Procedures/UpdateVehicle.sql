@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Updates a record in Vehicle table
 -- =============================================
-CREATE PROCEDURE UpdateVehicle
+CREATE PROCEDURE [dbo].[UpdateVehicle]
 	@VehicleId int
 	, @VehicleName nvarchar(200)
 	, @VehicleManufacturerId int

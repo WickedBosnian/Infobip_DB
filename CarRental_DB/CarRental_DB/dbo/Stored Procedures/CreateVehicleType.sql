@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Inserts a record in Vehicle Types table
 -- =============================================
-CREATE PROCEDURE CreateVehicleType
+CREATE PROCEDURE [dbo].[CreateVehicleType]
 	@VehicleTypeName nvarchar(200), @VehicleTypeDescription nvarchar(max)
 AS
 	SET NOCOUNT ON;

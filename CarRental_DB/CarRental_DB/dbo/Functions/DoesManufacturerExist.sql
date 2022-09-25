@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Returns true or false depending if the vehicle manufacturer exists
 -- =============================================
-CREATE FUNCTION DoesManufacturerExist
+CREATE FUNCTION [dbo].[DoesManufacturerExist]
 (
 	@ManufacturerId int
 )

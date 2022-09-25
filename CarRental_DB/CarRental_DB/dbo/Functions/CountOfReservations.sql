@@ -3,7 +3,7 @@
 -- Create date: 24.09.2022
 -- Description:	Returns number of records from Reservation table
 -- =============================================
-CREATE FUNCTION CountOfReservations()
+CREATE FUNCTION [dbo].[CountOfReservations]()
 RETURNS int
 AS
 BEGIN

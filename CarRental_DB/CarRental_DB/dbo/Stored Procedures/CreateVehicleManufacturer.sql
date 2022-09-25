@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Inserts new record in VehicleManfacturer table
 -- =============================================
-CREATE PROCEDURE CreateVehicleManufacturer
+CREATE PROCEDURE [dbo].[CreateVehicleManufacturer]
 	@VehicleManufacturerName nvarchar(200), @VehicleManufacturerDescription nvarchar(max)
 AS
 	SET NOCOUNT ON;

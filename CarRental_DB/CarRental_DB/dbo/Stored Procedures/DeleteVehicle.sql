@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Deletes a record from Vehicle table based on ID
 -- =============================================
-CREATE PROCEDURE DeleteVehicle
+CREATE PROCEDURE [dbo].[DeleteVehicle]
 	@VehicleId int
 AS
 SET NOCOUNT ON

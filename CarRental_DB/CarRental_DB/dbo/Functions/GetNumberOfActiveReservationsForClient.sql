@@ -3,7 +3,7 @@
 -- Create date: 2022-09-19
 -- Description:	Returns number of active reservations for a client
 -- =============================================
-CREATE FUNCTION GetNumberOfActiveReservationsForClient
+CREATE FUNCTION [dbo].[GetNumberOfActiveReservationsForClient]
 (
 	@Client int
 )

@@ -3,7 +3,7 @@
 -- Create date: 19.09.2022
 -- Description:	Returns true or false depending if the client exists
 -- =============================================
-CREATE FUNCTION DoesClientExist
+CREATE FUNCTION [dbo].[DoesClientExist]
 (
 	@ClientID int
 )
