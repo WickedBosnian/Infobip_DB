@@ -1,2 +1,4 @@
 # Infobip_DB
-DB files for the task from Infobip
+
+SQL Database project created in Visual Studio 2022.
+Infobip_DB contains schema for CarRental database that is used for CarRenatal app.
