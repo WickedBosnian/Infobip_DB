@@ -3,13 +3,13 @@
 -- Create date: 19.09.2022
 -- Description:	Returns a records from VehicleManufacturer table based on id
 -- =============================================
-CREATE PROCEDURE GetVehicleManufacturerById
+CREATE PROCEDURE [dbo].[GetVehicleManufacturerById]
 	@VehicleManufacturerId int
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-    SELECT *
+    SELECT TOP 1 *
 	FROM VehicleManufacturer
 	WHERE VehicleManufacturerID = @VehicleManufacturerId
 END

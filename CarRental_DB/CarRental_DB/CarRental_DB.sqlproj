@@ -109,5 +109,8 @@
     <Build Include="dbo\Functions\CountOfClientsWithFilters.sql" />
     <Build Include="dbo\Stored Procedures\GetVehiclesForPagination.sql" />
     <Build Include="dbo\Stored Procedures\GetClientsForPagination.sql" />
+    <Build Include="dbo\Functions\CountOfReservationsWithFilters.sql" />
+    <Build Include="dbo\Functions\CountOfReservations.sql" />
+    <Build Include="dbo\Stored Procedures\GetReservationsForPagination.sql" />
   </ItemGroup>
 </Project>

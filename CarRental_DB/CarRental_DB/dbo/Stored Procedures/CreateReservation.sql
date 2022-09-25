@@ -16,11 +16,12 @@ BEGIN TRY
 		IF dbo.IsVehicleReservedForPeriod(@VehicleId, @ReservationDateFrom, @ReservationDateTo) = 1
 			RAISERROR('This vehicle is already reserved for this period!', 11, 1);
 
-		IF dbo.GetNumberOfReservationsWithSameVehicleTypeForClient(@ClientId, @VehicleId, @ReservationDateFrom, @ReservationDateTo) >= 1
+		IF dbo.GetNumberOfReservationsWithSameVehicleTypeForClient(@ClientId, @VehicleId) >= 1
 			RAISERROR('Two vehicles of the same type can not be reserved at the same time by the same client!', 11, 1);
 
-		IF CAST(@ReservationDateFrom AS date) < CAST(@ReservationDateTo AS date)
-			RAISERROR('Ending date of reservation can not be before Starting date of reservation!', 11, 1);
+		IF CAST(@ReservationDateFrom AS date) > CAST(@ReservationDateTo AS date)
+			OR CAST(@ReservationDateFrom AS date) < CAST(GETDATE() AS date) OR CAST(@ReservationDateTo AS date) < CAST(GETDATE() AS date)
+			RAISERROR('Date From has to be before Date To! Date From and Date To can not be before today!', 11, 1);
 
 		IF dbo.DoesClientExist(@ClientId) = 0
 			RAISERROR('Client with this ID does not exist!', 11, 1);

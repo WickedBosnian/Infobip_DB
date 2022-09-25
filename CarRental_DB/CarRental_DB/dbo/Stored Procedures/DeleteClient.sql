@@ -1,8 +1,11 @@
-﻿CREATE PROCEDURE [dbo].[DeleteClient]
+﻿-- =============================================
+-- Author:		Nino Omic
+-- Create date: 18.09.2022
+-- Description:	Deletes a record from table Client
+-- =============================================
+CREATE PROCEDURE [dbo].[DeleteClient]
 @ClientId int
-
 AS
-
 SET NOCOUNT ON
 
 BEGIN TRY

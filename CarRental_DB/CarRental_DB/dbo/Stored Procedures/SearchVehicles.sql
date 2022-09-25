@@ -15,7 +15,7 @@ BEGIN
 	WHERE (VehicleName = @VehicleName OR @VehicleName IS NULL)
 		AND (VehicleManufacturerId = @VehicleManufacturerId OR @VehicleManufacturerId IS NULL)
 		AND (VehicleTypeId = @VehicleTypeId OR @VehicleTypeId IS NULL)
-			ORDER BY VehicleID
+			ORDER BY VehicleID DESC
 	OFFSET ((@PageNumber - 1) * @RowsPerPage) ROWS
 	FETCH NEXT @RowsPerPage ROWS ONLY;
 END

@@ -1,4 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[UpdateClient]
+﻿-- =============================================
+-- Author:		Nino Omic
+-- Create date: 17.09.2022
+-- Description:	Updates a record in table Client based on input parameters
+-- =============================================
+CREATE PROCEDURE [dbo].[UpdateClient]
 @ClientId int
 , @Firstname nvarchar(200)
 , @Lastname nvarchar(200)

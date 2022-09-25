@@ -3,13 +3,13 @@
 -- Create date: 19.09.2022
 -- Description:	Returns vehicle type by ID
 -- =============================================
-CREATE PROCEDURE GetVehicleTypeById
+CREATE PROCEDURE [dbo].[GetVehicleTypeById]
 	@VehicleTypeId int
 AS
 BEGIN
 	SET NOCOUNT ON;
 
-    SELECT *
+    SELECT TOP 1 *
 	FROM VehicleType
 	WHERE VehicleTypeID = @VehicleTypeId
 END

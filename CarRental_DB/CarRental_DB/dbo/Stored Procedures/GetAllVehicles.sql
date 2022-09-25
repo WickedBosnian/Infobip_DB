@@ -10,4 +10,5 @@ BEGIN
 
 	SELECT *
 	FROM Vehicle
+	ORDER BY VehicleID DESC
 END

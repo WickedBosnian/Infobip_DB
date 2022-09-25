@@ -5,15 +5,13 @@
 -- =============================================
 CREATE FUNCTION [dbo].[GetNumberOfReservationsWithSameVehicleTypeForClient]
 (
-	@ClientId int, @VehicleId int, @From datetime, @To datetime
+	@ClientId int, @VehicleId int
 )
 RETURNS int
 AS
 BEGIN
-	-- Declare the return variable here
 	DECLARE @NumberOfReservations int
 
-	-- Add the T-SQL statements to compute the return value here
 	SET @NumberOfReservations = (SELECT COUNT(*)
 				FROM Vehicle AS VV
 				WHERE VV.VehicleID = @VehicleId
@@ -24,7 +22,6 @@ BEGIN
 							JOIN Vehicle AS V ON V.VehicleID = R.VehicleID
 							WHERE R.ClientID = @ClientId
 							AND R.Active = 1
-							AND ((R.ReservationDateFrom <= @To) AND (R.ReservationDateTo >= @From))
 					))
 
 	RETURN @NumberOfReservations
